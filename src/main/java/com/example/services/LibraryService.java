@@ -1,5 +1,7 @@
-package com.example.bookservice;
+package com.example.services;
 
+import com.example.data.Database;
+import com.example.data.Library;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -8,11 +10,11 @@ import java.util.List;
 public class LibraryService {
     private Database database = new Database();
 
-    public List<library> findAll() {
+    public List<Library> findAll() {
         return database.getLibraryArrayList();
     }
 
-    public library findById(long id) {
+    public Library findById(long id) {
         for (int i = 0; i < database.getLibraryArrayList().size(); i++) {
             if (database.getLibraryArrayList().get(i).getId() == (id)) {
                 return database.getLibraryArrayList().get(i);
@@ -21,7 +23,7 @@ public class LibraryService {
         return null;
     }
 
-    public void save(library library) {
+    public void save(Library library) {
         database.setLibraryArrayList(library);
     }
 
@@ -33,8 +35,8 @@ public class LibraryService {
         database.getLibraryArrayList().remove(findById(id));
     }
 
-    public void update(long id, library library) {
-        library toUpdateLibrary = findById(id);
+    public void update(long id, Library library) {
+        Library toUpdateLibrary = findById(id);
         toUpdateLibrary.setId(library.getId());
         toUpdateLibrary.setLocation(library.getLocation());
         toUpdateLibrary.setAmountOfBooks(library.getAmountOfBooks());

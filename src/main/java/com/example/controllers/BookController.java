@@ -1,5 +1,7 @@
-package com.example.bookservice;
+package com.example.controllers;
 
+import com.example.data.Book;
+import com.example.services.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,17 +14,17 @@ public class BookController {
     private BookService bookService;
 
     @GetMapping("/all")
-    public List<book> findAll() {
+    public List<Book> findAll() {
         return bookService.findAll();
     }
 
     @GetMapping("/{id}")
-    public book findById(@PathVariable Long id) {
+    public Book findById(@PathVariable Long id) {
         return bookService.findById(id);
     }
 
     @PostMapping
-    public void save(@RequestBody book book) {
+    public void save(@RequestBody Book book) {
         bookService.save(book);
     }
 
@@ -37,7 +39,7 @@ public class BookController {
     }
 
     @PutMapping("/{id}")
-    public void update(@PathVariable Long id, @RequestBody book book) {
+    public void update(@PathVariable Long id, @RequestBody Book book) {
         bookService.update(id, book);
     }
 }

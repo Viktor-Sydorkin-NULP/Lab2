@@ -1,5 +1,7 @@
-package com.example.bookservice;
+package com.example.controllers;
 
+import com.example.data.Library;
+import com.example.services.LibraryService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,17 +12,17 @@ public class LibraryController {
     private LibraryService libraryService = new LibraryService();
 
     @GetMapping("/all")
-    public List<library> findAll() {
+    public List<Library> findAll() {
         return libraryService.findAll();
     }
 
     @GetMapping("/{id}")
-    public library findById(@PathVariable long id) {
+    public Library findById(@PathVariable long id) {
         return libraryService.findById(id);
     }
 
     @PostMapping
-    public void save(@RequestBody library library) {
+    public void save(@RequestBody Library library) {
         libraryService.save(library);
     }
 
@@ -35,7 +37,7 @@ public class LibraryController {
     }
 
     @PutMapping("/{id}")
-    public void update(@PathVariable long id, @RequestBody library library) {
+    public void update(@PathVariable long id, @RequestBody Library library) {
         libraryService.update(id, library);
     }
 }

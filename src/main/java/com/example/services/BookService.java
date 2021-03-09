@@ -1,5 +1,7 @@
-package com.example.bookservice;
+package com.example.services;
 
+import com.example.data.Book;
+import com.example.data.Database;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -8,11 +10,11 @@ import java.util.List;
 public class BookService {
     private Database database = new Database();
 
-    public List<book> findAll() {
+    public List<Book> findAll() {
         return database.getBookArrayList();
     }
 
-    public book findById(Long id) {
+    public Book findById(Long id) {
         for (int i = 0; i < database.getBookArrayList().size(); i++) {
             if (database.getBookArrayList().get(i).getId() == (id)) {
                 return database.getBookArrayList().get(i);
@@ -21,7 +23,7 @@ public class BookService {
         return null;
     }
 
-    public void save(book book) {
+    public void save(Book book) {
         database.setBookArrayList(book);
     }
 
@@ -33,8 +35,8 @@ public class BookService {
         database.getBookArrayList().remove(findById(id));
     }
 
-    public void update(Long id, book book) {
-        book toUpdateBook = findById(id);
+    public void update(Long id, Book book) {
+        Book toUpdateBook = findById(id);
         toUpdateBook.setId(book.getId());
         toUpdateBook.setTitle(book.getTitle());
         toUpdateBook.setYear(book.getYear());
